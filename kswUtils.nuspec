@@ -1,0 +1,31 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>kswUtils</id>
+    <version>1.2.2-localbuild</version>
+    <title>KornSW Common Utilities</title>
+    <authors>KornSW</authors>
+    <owners>KornSW</owners>
+    <!-- https://spdx.org/licenses/ -->
+    <license type="expression">GPL-3.0-only</license>
+    <projectUrl>https://github.com/KornSW/kswUtils</projectUrl>
+    <iconUrl>https://github.com/KornSW/kswUtils/blob/master/PackageIcon.png?raw=true</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>some Utilities</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright KornSW</copyright>
+    <tags>Common</tags>
+    <dependencies>
+      <group>     
+        <dependency id="kSystemExtensions" version="[2.3.7,2.9999]" />
+        <dependency id="ComponentDiscovery" version="[4.1.0,4.9999]" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <!-- https://docs.microsoft.com/en-us/nuget/create-packages/creating-a-package#from-a-convention-based-working-directory -->
+    <file src="(Stage)\Bin\kswUtils.dll" target="lib/{tfm}" />
+    <file src="(Stage)\Bin\kswUtils.xml" target="lib/{tfm}" />
+    <file src="(Stage)\Bin\kswUtils.pdb" target="lib/{tfm}" />
+  </files>
+</package> 
