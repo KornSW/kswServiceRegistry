@@ -14,16 +14,16 @@ namespace ServiceDiscovery.Store {
 
   public class FileBasedDiscoveryStore : IDiscoveryStore {
 
-    private DirectoryInfo _CacheFolder;
+    private DirectoryInfo _StorageFolder;
 
-    public FileBasedDiscoveryStore(string cacheFolderFullName) {
-      _CacheFolder = new DirectoryInfo(Path.GetFullPath(cacheFolderFullName));
+    public FileBasedDiscoveryStore(string storageFolderFullName) {
+      _StorageFolder = new DirectoryInfo(Path.GetFullPath(storageFolderFullName));
     }
 
     public DiscoveryStoreEntry[] LoadAllEntries()  {
       List<DiscoveryStoreEntry> allEntries = new List<DiscoveryStoreEntry>();
 
-      foreach (DirectoryInfo infrastructureScopeDirectory in _CacheFolder.GetDirectories()) {
+      foreach (DirectoryInfo infrastructureScopeDirectory in _StorageFolder.GetDirectories()) {
         string infrastructureScopeName = infrastructureScopeDirectory.Name;
 
         foreach (FileInfo file in infrastructureScopeDirectory.GetFiles("*.*")) {
@@ -44,7 +44,7 @@ namespace ServiceDiscovery.Store {
 
     public bool TryLoadEntry(string contractFullName, int contractMajorVersion, string infrastructureScopeName, ref DiscoveryStoreEntry loadedEntry) {
 
-      DirectoryInfo infrastructureScopeDirectory = new DirectoryInfo(Path.Combine(_CacheFolder.FullName, infrastructureScopeName));
+      DirectoryInfo infrastructureScopeDirectory = new DirectoryInfo(Path.Combine(_StorageFolder.FullName, infrastructureScopeName));
       if (!infrastructureScopeDirectory.Exists) {
         return false;
       }
@@ -62,7 +62,7 @@ namespace ServiceDiscovery.Store {
 
     public void RemoveEntry(string contractFullName, int contractMajorVersion, string infrastructureScopeName)    {
       
-      DirectoryInfo infrastructureScopeDirectory = new DirectoryInfo(Path.Combine(_CacheFolder.FullName, infrastructureScopeName));
+      DirectoryInfo infrastructureScopeDirectory = new DirectoryInfo(Path.Combine(_StorageFolder.FullName, infrastructureScopeName));
       if (!infrastructureScopeDirectory.Exists) {
         return;
       }
@@ -78,7 +78,7 @@ namespace ServiceDiscovery.Store {
     public void SaveEntry(DiscoveryStoreEntry entry)
     {
 
-      DirectoryInfo infrastructureScopeDirectory = new DirectoryInfo(Path.Combine(_CacheFolder.FullName, entry.InfrastructureScopeName));
+      DirectoryInfo infrastructureScopeDirectory = new DirectoryInfo(Path.Combine(_StorageFolder.FullName, entry.InfrastructureScopeName));
       if (!infrastructureScopeDirectory.Exists) {
         infrastructureScopeDirectory.Create();
       }

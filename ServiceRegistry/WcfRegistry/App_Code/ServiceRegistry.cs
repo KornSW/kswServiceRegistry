@@ -5,18 +5,19 @@
 //  +------------------------------------------------------------------------+
 
 using ServiceDiscovery;
+using ServiceDiscovery.Store;
 using System;
 using System.IO;
 
 public class ServiceRegistry : FileBasedServiceRegistry {
 
-  private static string GetStorageFolderFullName() {
+  private static IDiscoveryStore GetPersistentStore() {
     string appDataFolderFullName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
     string storageFolderFullName = Path.Combine(appDataFolderFullName, "kswServiceRegistry","DB");
-    return storageFolderFullName;
+    return new FileBasedDiscoveryStore(storageFolderFullName);
   }
 
-  public ServiceRegistry(string storageFolderFullName) : base(GetStorageFolderFullName()) {
+  public ServiceRegistry(string storageFolderFullName) : base(GetPersistentStore(), "foo") {
   }
 
 }

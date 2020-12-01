@@ -55,7 +55,7 @@ namespace ServiceDiscovery {
 
       this.SaveCacheEntryFailSafe(entry);
 
-      return _PrimaryRegistry.AnnounceServiceUrl (serviceUrl, contractFullName, contractMajorVersion, infrastructureScopeName, initialLoadMetric, timestampUtc, legitimationHash);
+      return _PrimaryRegistry.AnnounceServiceUrl(serviceUrl, contractFullName, contractMajorVersion, infrastructureScopeName, initialLoadMetric, timestampUtc, legitimationHash);
     }
 
     private DiscoveryCacheEntry PickCacheEntry(string contractFullName, int contractMajorVersion, string infrastructureScopeName, bool createIfNotEists) {

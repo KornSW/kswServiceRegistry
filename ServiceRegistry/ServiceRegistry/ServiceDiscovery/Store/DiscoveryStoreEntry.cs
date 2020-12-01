@@ -16,8 +16,15 @@ namespace ServiceDiscovery.Store {
 
     public DateTime LastUpdateUtc { get; set; }
 
-    public string[] UrlEntries { get; set; } = {};
+    public DiscoveryStoreUrlEntry[] UrlEntries { get; set; } = {};
   }
 
-}
+  public class DiscoveryStoreUrlEntry {
 
+    public string Url { get; set; }
+
+    public int AvailabilityState { get; set; } = 0;
+
+  }
+
+ }
